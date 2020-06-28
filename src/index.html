@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ulauncher Extension Doesn´t install and now?<</title>
+    <link href="main.css" rel="stylesheet" />
+    <meta
+      name="description"
+      content="An explanation for the most common Ulauncher Extension Installation error"
+      <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+  </head>
+
+  <body class="h-screen bg-gray-300 pt-12 text-gray-700 font-sans text-center text-xl">
+    <img src="images/ulauncher-logo.png" width="128px;" height="128px;" alt="Ulauncher logo" class="block mx-auto" />
+
+    <div class="container mx-auto p-12">
+      <h1 class="text-5xl text-teal-700 text-center mb-8">Extension Doesn´t install and now?</h1>
+
+      <p class="mb-8">
+        The most common for an Ulauncher Extension to fail to install is a missing Python dependency. <br />If you see
+        an error like this, it´s mostly the cause.
+      </p>
+
+      <pre class="text-sm text-left bg-gray-400 p-8 whitespace-pre-wrap break-words mb-12 shadow-md">
+        Message: 'com.github.brpaz.ulauncher-docsearch'
+        Error Name: UnhandledError
+        Type: KeyError
+
+        Traceback (most recent call last):
+        File "/usr/lib/python3/dist-packages/ulauncher/ui/windows/PreferencesUlauncherDialog.py", line 198, in
+        on_scheme_callback
+        resp = rt.dispatch(self, scheme_request.get_uri())
+        File "/usr/lib/python3/dist-packages/ulauncher/utils/Router.py", line 49, in dispatch
+        return callback(context, url_params)
+        File "/usr/lib/python3/dist-packages/ulauncher/ui/windows/PreferencesUlauncherDialog.py", line 433, in
+        prefs_extension_update_prefs
+        controller = ExtensionServer.get_instance().get_controller(ext_id)
+        File "/usr/lib/python3/dist-packages/ulauncher/api/server/ExtensionServer.py", line 76, in get_controller
+        return self.controllers[extension_id]
+        KeyError: 'com.github.brpaz.ulauncher-docsearch'
+      </pre>
+
+      <div class="leading-10 mb-8">
+        <h2 class="text-center text-teal-700 text-4xl mb-8">The solution</h2>
+
+        <p>
+          Search in the project README for the list of required dependencies and install them as specified.
+        </p>
+
+        <p>
+          In most cases, this can be done with Python
+          <a
+            class="underline text-gray-700"
+            href="https://pypi.org/project/pip/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Pip</a
+          >.
+        </p>
+
+        <p>
+          For example, the
+          <a
+            class="underline text-gray-700"
+            href="https://github.com/brpaz/ulauncher-docsearch"
+            target="_blank"
+            rel="noopener noreferrer"
+            >docsearch</a
+          >, requires the alogliasearch package to work.
+        </p>
+
+        <p>It can be installed like:</p>
+
+        <div>
+          <pre class="text-white bg-teal-500 p-4 mb-8 mt-8 inline-block shadow-md whitespace-pre-wrap break-words">
+  pip3 install algoliasearch '&gt;2.0,&lt;3.0'</pre
+          >
+        </div>
+        After that, restart Ulauncher and the extension should work.
+        <p>
+          If you have the version 5.7.5 or greater of Ulauncher, it will display a warning message when installing the
+          extension:
+        </p>
+
+        <img src="images/missing-ext-warn.png" alt="missing ext" class="block mx-auto" />
+      </div>
+
+      <div>
+        <h2 class="text-center text-teal-700 text-3xl mb-8">What if I still have a problem?</h2>
+
+        <p>
+          In this case, create an issue on the extension repository, but make sure you provide the Ulauncher logs.
+        </p>
+
+        <p>Close any Ulauncher istance that is running and run it from the terminal:</p>
+
+        <pre
+          class="text-white text-center bg-teal-500 p-4 mb-8 mt-8 inline-block shadow-md mb-16 whitespace-pre-wrap break-words"
+        >
+  ulauncher -v --dev |&amp; grep "extension-name"</pre
+        >
+      </div>
+    </div>
+    <footer class="bg-teal-400 text-white text-center w-full p-4">
+      &copy; <a href="https://brunopaz.dev" rel="noreferrer noopener" target="_blank">Bruno Paz</a>
+    </footer>
+  </body>
+</html>
